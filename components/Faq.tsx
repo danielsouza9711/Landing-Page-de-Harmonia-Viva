@@ -28,7 +28,7 @@ export const Faq: React.FC = memo(() => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-24 bg-black relative">
+    <section className="py-24 relative">
       <div className="absolute right-0 top-1/4 w-64 h-64 bg-brand-purple/5 blur-[80px] rounded-full pointer-events-none"></div>
 
       <div className="container mx-auto px-4 max-w-3xl relative z-10">

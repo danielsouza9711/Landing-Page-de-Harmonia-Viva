@@ -10,7 +10,7 @@ const Faq = lazy(() => import('./components/Faq').then(module => ({ default: mod
 const Footer = lazy(() => import('./components/Footer').then(module => ({ default: module.Footer })));
 
 interface ErrorBoundaryProps {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 interface ErrorBoundaryState {
@@ -19,10 +19,9 @@ interface ErrorBoundaryState {
 
 // Robust Error Boundary
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  constructor(props: ErrorBoundaryProps) {
-    super(props);
-    this.state = { hasError: false };
-  }
+  public state: ErrorBoundaryState = {
+    hasError: false
+  };
 
   static getDerivedStateFromError(_: Error): ErrorBoundaryState {
     return { hasError: true };
