@@ -1,72 +1,91 @@
 import React, { memo } from 'react';
-import { Check, Lock, Zap } from 'lucide-react';
+import { Check, Lock, Zap, Star } from 'lucide-react';
 import { Button } from './Button';
 
 export const Offer: React.FC = memo(() => {
   return (
-    <section id="offer" className="py-16 md:py-24 bg-[#050505] relative overflow-hidden">
-      <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-brand-purple/10 to-transparent pointer-events-none"></div>
+    <section id="offer" className="py-20 md:py-32 relative overflow-hidden">
+      {/* Background Ambience */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[500px] bg-brand-green/5 blur-[120px] rounded-full -z-10 pointer-events-none"></div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto bg-[#0A0A0A] border border-white/10 rounded-3xl overflow-hidden shadow-2xl relative transform hover:scale-[1.01] transition-transform duration-500">
-          {/* Top Glow */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-1 bg-gradient-to-r from-transparent via-brand-pink to-transparent opacity-50"></div>
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-stretch bg-[#0A0A0A] rounded-3xl overflow-hidden premium-card-border shadow-2xl relative">
           
-          <div className="bg-gradient-to-r from-brand-card via-[#1a1a1a] to-brand-card p-4 text-center border-b border-white/5">
-            <span className="text-brand-green font-bold tracking-widest uppercase text-[10px] md:text-sm animate-pulse flex items-center justify-center gap-2">
-              <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-brand-green"></span>
-              Acesso Liberado Imediatamente
-            </span>
-          </div>
+          {/* Decorative Elements */}
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
           
-          <div className="grid md:grid-cols-2">
-            {/* Features Column */}
-            <div className="p-6 md:p-12 border-b md:border-b-0 md:border-r border-white/5 flex flex-col justify-center bg-[#0a0a0a]">
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 text-center md:text-left">Acesso Plataforma</h3>
-              <p className="text-gray-400 mb-6 md:mb-8 text-sm text-center md:text-left">Desbloqueie seu potencial musical hoje.</p>
-              
-              <ul className="space-y-4 mb-6 md:mb-8">
-                <li className="flex items-start gap-3 group">
-                  <div className="bg-brand-green/20 p-1 rounded-full group-hover:bg-brand-green/40 transition-colors mt-0.5"><Zap className="w-3 h-3 text-brand-green" /></div>
-                  <span className="text-gray-300 text-sm"><strong>Gerador de Prompts</strong></span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="bg-brand-green/20 p-1 rounded-full mt-0.5"><Check className="w-3 h-3 text-brand-green" /></div>
-                  <span className="text-gray-300 text-sm">Masterclass Completa</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="bg-brand-green/20 p-1 rounded-full mt-0.5"><Check className="w-3 h-3 text-brand-green" /></div>
-                  <span className="text-gray-300 text-sm">Módulo Monetização Youtube & Spotify</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="bg-brand-gold/20 p-1 rounded-full animate-pulse mt-0.5"><Lock className="w-3 h-3 text-brand-gold" /></div>
-                  <span className="text-white font-semibold text-sm">BÔNUS SECRETO: Acesso Ilimitado</span>
-                </li>
-              </ul>
-            </div>
-            
-            {/* Pricing Column */}
-            <div className="p-8 md:p-12 bg-[#080808] flex flex-col justify-center items-center text-center relative overflow-hidden">
-              <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle, #333 1px, transparent 1px)', backgroundSize: '10px 10px' }}></div>
+          {/* Left Side: Value Stack */}
+          <div className="flex-1 p-8 md:p-12 bg-[#0C0C0C] relative">
+             <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-brand-pink to-brand-purple"></div>
+             
+             <h3 className="text-3xl font-bold text-white mb-2">Acesso Plataforma</h3>
+             <p className="text-gray-400 mb-8 font-light">Desbloqueie seu potencial musical com IA.</p>
+             
+             <ul className="space-y-5">
+                {[
+                  { text: "Gerador de Prompts Integrado", icon: Zap, color: "text-brand-green" },
+                  { text: "Masterclass Completa (Do Zero ao Pro)", icon: Star, color: "text-brand-gold" },
+                  { text: "Módulo Monetização Youtube & Spotify", icon: Check, color: "text-white" },
+                  { text: "Acesso Mobile & Desktop", icon: Check, color: "text-white" },
+                  { text: "BÔNUS: Método Economia Real", icon: Lock, color: "text-brand-gold", bold: true }
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-4 group">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center bg-white/5 border border-white/5 group-hover:bg-white/10 transition-colors ${item.color}`}>
+                      <item.icon className="w-4 h-4" />
+                    </div>
+                    <span className={`text-sm md:text-base ${item.bold ? 'text-white font-bold' : 'text-gray-300'}`}>{item.text}</span>
+                  </li>
+                ))}
+             </ul>
 
-              <p className="text-gray-500 line-through text-sm md:text-lg mb-2">De R$ 97,90</p>
-              <div className="flex flex-col items-center justify-center gap-1 mb-6 leading-none relative z-10">
-                <span className="text-lg md:text-xl font-bold text-white mb-1">Por apenas</span>
-                {/* Responsive font size for price to avoid breaking layout */}
-                <span className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-green to-brand-greenHover tracking-tight">R$ 29,90</span>
-              </div>
-              <p className="text-white text-xs md:text-sm mb-8 bg-white/5 px-3 py-1 rounded-full border border-white/5 relative z-10">Pagamento Único</p>
-              
-              <Button fullWidth variant="primary" className="mb-4 z-10 shadow-[0_0_20px_rgba(16,185,129,0.2)] hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] animate-pulse-slow">
-                LIBERAR MEU ACESSO
-              </Button>
-              
-              <div className="flex items-center gap-2 text-[10px] text-gray-600 uppercase tracking-widest mt-4 relative z-10">
-                <Lock className="w-3 h-3" />
-                Pagamento Seguro
-              </div>
-            </div>
+             <div className="mt-10 pt-8 border-t border-white/5">
+                <div className="flex items-center gap-4">
+                  <div className="flex -space-x-3">
+                    {[1,2,3,4].map(i => (
+                      <div key={i} className="w-8 h-8 rounded-full border-2 border-[#0C0C0C] bg-gray-700"></div>
+                    ))}
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    <strong className="text-white block">+1.200 Alunos</strong> já estão criando hits.
+                  </div>
+                </div>
+             </div>
           </div>
+
+          {/* Right Side: The Offer (Black Card Look) */}
+          <div className="w-full md:w-[420px] bg-[#050505] p-8 md:p-12 flex flex-col justify-center items-center text-center relative border-l border-white/5">
+              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 mix-blend-overlay"></div>
+              
+              <div className="inline-block bg-brand-green/10 text-brand-green border border-brand-green/20 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+                Oferta Limitada
+              </div>
+
+              <div className="mb-2">
+                <span className="text-gray-500 text-lg line-through">De R$ 97,90</span>
+              </div>
+              
+              <div className="mb-6 relative">
+                 <h2 className="text-6xl md:text-7xl font-extrabold text-white tracking-tighter">
+                   <span className="text-2xl align-top text-gray-400 font-medium mr-1">R$</span>
+                   29,90
+                 </h2>
+                 <p className="text-gray-500 text-sm mt-2">Pagamento Único • Acesso Vitalício</p>
+              </div>
+
+              <Button 
+                fullWidth 
+                variant="primary" 
+                className="py-5 text-lg shadow-[0_0_30px_rgba(16,185,129,0.3)] hover:shadow-[0_0_50px_rgba(16,185,129,0.5)] border-t border-white/20"
+              >
+                LIBERAR ACESSO AGORA
+              </Button>
+
+              <div className="mt-6 flex items-center justify-center gap-2 text-[10px] text-gray-600 uppercase tracking-widest">
+                <Lock className="w-3 h-3" />
+                Ambiente 100% Seguro
+              </div>
+          </div>
+
         </div>
       </div>
     </section>

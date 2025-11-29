@@ -15,7 +15,7 @@
     <link rel="dns-prefetch" href="https://aistudiocdn.com" />
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <script>
       tailwind.config = {
@@ -26,8 +26,8 @@
             },
             colors: {
               brand: {
-                dark: '#050505',
-                card: '#121212',
+                dark: '#030303', // Darker black for better contrast
+                card: '#0A0A0A',
                 pink: '#d946ef',
                 purple: '#a855f7',
                 green: '#10b981',
@@ -39,6 +39,7 @@
               'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
               'float': 'float 6s ease-in-out infinite',
               'fade-in': 'fadeIn 0.5s ease-out forwards',
+              'shimmer': 'shimmer 2s linear infinite',
             },
             keyframes: {
               float: {
@@ -48,7 +49,15 @@
               fadeIn: {
                 '0%': { opacity: '0', transform: 'translateY(10px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              shimmer: {
+                from: { backgroundPosition: '0 0' },
+                to: { backgroundPosition: '-200% 0' },
               }
+            },
+            backgroundImage: {
+              'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+              'hero-glow': 'conic-gradient(from 180deg at 50% 50%, #2a8af6 0deg, #a853ba 180deg, #e92a67 360deg)',
             }
           }
         }
@@ -56,41 +65,60 @@
     </script>
     <style>
       body {
-        background-color: #050505;
+        background-color: #030303;
         color: #f3f4f6;
         overflow-x: hidden;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
+      
+      /* Professional Noise Texture - Adds "film grain" feel */
+      .bg-noise {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 50;
+        opacity: 0.035;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      }
+
+      /* Subtle Tech Grid Background */
+      .bg-grid {
+        background-size: 50px 50px;
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+      }
+
       .gradient-text {
-        background: linear-gradient(to right, #d946ef, #a855f7);
+        background: linear-gradient(to right, #e879f9, #a855f7, #cbd5e1);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        text-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
       }
-      /* Layer 4: GPU Acceleration for smooth animations on low-end devices */
+
+      /* Premium Card Glow Effect */
+      .premium-card-border {
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+        border-left: 1px solid rgba(255, 255, 255, 0.05);
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.5);
+      }
+
       .gpu-accelerated {
         transform: translateZ(0);
         will-change: transform, opacity;
       }
-      .gradient-border {
-        position: relative;
-        background: #121212;
-        border-radius: 0.75rem;
-        z-index: 1;
-      }
-      .gradient-border::before {
-        content: "";
-        position: absolute;
-        inset: -1px;
-        z-index: -1;
-        border-radius: 0.80rem;
-        background: linear-gradient(45deg, #d946ef22, #a855f722);
-      }
-      /* Reduce paint operations for blur effects */
+      
       .low-cost-blur {
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
       }
     </style>
   <script type="importmap">
