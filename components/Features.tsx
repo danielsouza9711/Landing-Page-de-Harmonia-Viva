@@ -12,7 +12,8 @@ interface FeatureCardProps {
 const FeatureCard = memo(({ title, items, icon: Icon, highlight = false, badge = "" }: FeatureCardProps) => (
   <article className={`group relative p-8 rounded-2xl border transition-all duration-500 hover:-translate-y-2 h-full flex flex-col gpu-accelerated ${highlight ? 'bg-[#0f0f0f] border-brand-pink/40 shadow-[0_0_30px_rgba(217,70,239,0.05)]' : 'bg-brand-card/30 border-white/5 hover:border-brand-purple/30 hover:bg-brand-card/50'}`}>
     {badge && (
-      <div className="absolute -top-3 right-8 bg-brand-green text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg z-10 animate-bounce">
+      <div className="absolute -top-4 right-6 md:right-8 bg-gradient-to-r from-brand-green to-emerald-400 text-[#050505] text-[10px] md:text-xs font-extrabold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-[0_0_20px_rgba(16,185,129,0.5)] z-20 border border-white/20 transform group-hover:scale-105 transition-transform duration-300 flex items-center">
+        <span className="mr-1.5 block w-1.5 h-1.5 bg-black rounded-full animate-pulse"></span>
         {badge}
       </div>
     )}
@@ -72,7 +73,7 @@ export const Features: React.FC = memo(() => {
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
           <FeatureCard 
             highlight
-            badge="Softwares Inclusos"
+            badge="INCLUSO"
             icon={Zap}
             title="Plataforma & Ferramentas"
             items={[
