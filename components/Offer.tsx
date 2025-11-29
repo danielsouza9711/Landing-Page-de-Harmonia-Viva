@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Check, Lock, Zap, Star } from 'lucide-react';
+import { Lock, Star } from 'lucide-react';
 import { Button } from './Button';
 
 export const Offer: React.FC = memo(() => {
@@ -23,33 +23,20 @@ export const Offer: React.FC = memo(() => {
              
              <ul className="space-y-5">
                 {[
-                  { text: "Gerador de Prompts Integrado", icon: Zap, color: "text-brand-green" },
-                  { text: "Masterclass Completa (Do Zero ao Pro)", icon: Star, color: "text-brand-gold" },
-                  { text: "Módulo Monetização Youtube & Spotify", icon: Check, color: "text-white" },
-                  { text: "Acesso Mobile & Desktop", icon: Check, color: "text-white" },
-                  { text: "BÔNUS: Método Economia Real", icon: Lock, color: "text-brand-gold", bold: true }
+                  { text: "Gerador de Prompts Integrado" },
+                  { text: "Masterclass Completa (Do Zero ao Pro)" },
+                  { text: "Módulo Monetização Youtube & Spotify" },
+                  { text: "Acesso Mobile & Desktop" },
+                  { text: "BÔNUS: Método Economia Real", bold: true }
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-4 group">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center bg-white/5 border border-white/5 group-hover:bg-white/10 transition-colors ${item.color}`}>
-                      <item.icon className="w-4 h-4" />
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center bg-yellow-500/10 border border-yellow-500/20 text-yellow-500 group-hover:bg-yellow-500/20 transition-colors shadow-[0_0_10px_rgba(234,179,8,0.1)]">
+                      <Star className="w-4 h-4 fill-yellow-500/20" />
                     </div>
                     <span className={`text-sm md:text-base ${item.bold ? 'text-white font-bold' : 'text-gray-300'}`}>{item.text}</span>
                   </li>
                 ))}
              </ul>
-
-             <div className="mt-10 pt-8 border-t border-white/5">
-                <div className="flex items-center gap-4">
-                  <div className="flex -space-x-3">
-                    {[1,2,3,4].map(i => (
-                      <div key={i} className="w-8 h-8 rounded-full border-2 border-[#0C0C0C] bg-gray-700"></div>
-                    ))}
-                  </div>
-                  <div className="text-xs text-gray-500">
-                    <strong className="text-white block">+1.200 Alunos</strong> já estão criando hits.
-                  </div>
-                </div>
-             </div>
           </div>
 
           {/* Right Side: The Offer (Black Card Look) */}

@@ -9,8 +9,12 @@ const Offer = lazy(() => import('./components/Offer').then(module => ({ default:
 const Faq = lazy(() => import('./components/Faq').then(module => ({ default: module.Faq })));
 const Footer = lazy(() => import('./components/Footer').then(module => ({ default: module.Footer })));
 
-// Lightweight Loading Placeholder
-const SectionLoader = () => <div className="w-full h-96 bg-transparent animate-pulse" aria-hidden="true" />;
+// Visual Loader to prevent "Black Screen" feeling
+const SectionLoader = () => (
+  <div className="w-full h-96 flex items-center justify-center" aria-label="Carregando...">
+    <div className="w-8 h-8 border-2 border-brand-pink/30 border-t-brand-pink rounded-full animate-spin"></div>
+  </div>
+);
 
 function App() {
   const scrollToOffer = () => {
@@ -24,9 +28,9 @@ function App() {
 
   return (
     <div className="min-h-screen bg-brand-dark text-white font-sans selection:bg-brand-pink selection:text-white relative">
-      {/* GLOBAL BACKGROUND LAYERS */}
+      {/* GLOBAL BACKGROUND LAYERS - Softened Opacity */}
       <div className="bg-noise fixed inset-0 z-50 pointer-events-none"></div>
-      <div className="bg-grid fixed inset-0 z-0 opacity-40 pointer-events-none"></div>
+      <div className="bg-grid fixed inset-0 z-0 opacity-15 pointer-events-none"></div>
 
       {/* Navigation Bar */}
       <nav className="fixed w-full z-40 bg-[#030303]/70 low-cost-blur border-b border-white/5 transition-all duration-300">
