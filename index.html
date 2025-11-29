@@ -4,19 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Domine a SUNO AI e produza músicas profissionais. Plataforma completa com gerador de prompts e masterclass." />
-    <meta name="theme-color" content="#050505" />
+    <meta name="theme-color" content="#030303" />
     
     <title>Harmonia Viva | Plataforma de Criação Musical com IA</title>
     
-    <!-- Layer 1: Network Optimization - Preconnect to CDNs -->
+    <!-- Layer 1: Network Optimization - Preconnect to Critical CDNs -->
+    <link rel="preconnect" href="https://esm.sh" />
     <link rel="preconnect" href="https://cdn.tailwindcss.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="https://aistudiocdn.com" />
 
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Tailwind Configuration -->
     <script>
       tailwind.config = {
         theme: {
@@ -26,7 +30,7 @@
             },
             colors: {
               brand: {
-                dark: '#030303', // Darker black for better contrast
+                dark: '#030303', 
                 card: '#0A0A0A',
                 pink: '#d946ef',
                 purple: '#a855f7',
@@ -39,7 +43,6 @@
               'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
               'float': 'float 6s ease-in-out infinite',
               'fade-in': 'fadeIn 0.5s ease-out forwards',
-              'shimmer': 'shimmer 2s linear infinite',
               'spin-slow': 'spin 3s linear infinite',
             },
             keyframes: {
@@ -50,20 +53,17 @@
               fadeIn: {
                 '0%': { opacity: '0', transform: 'translateY(10px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' },
-              },
-              shimmer: {
-                from: { backgroundPosition: '0 0' },
-                to: { backgroundPosition: '-200% 0' },
               }
             },
             backgroundImage: {
               'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-              'hero-glow': 'conic-gradient(from 180deg at 50% 50%, #2a8af6 0deg, #a853ba 180deg, #e92a67 360deg)',
             }
           }
         }
       }
     </script>
+
+    <!-- Global Styles & Critical CSS -->
     <style>
       body {
         background-color: #030303;
@@ -71,9 +71,33 @@
         overflow-x: hidden;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        margin: 0;
       }
       
-      /* Professional Noise Texture - Softened opacity to 0.015 for cleaner look */
+      /* Initial Load Spinner (Pure CSS) - Prevents black screen feeling */
+      #initial-loader {
+        position: fixed;
+        inset: 0;
+        background-color: #030303;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.5s ease;
+      }
+      .loader-spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid rgba(217, 70, 239, 0.3);
+        border-radius: 50%;
+        border-top-color: #d946ef;
+        animation: spin 1s ease-in-out infinite;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      
+      /* Optimized Textures */
       .bg-noise {
         position: fixed;
         top: 0;
@@ -82,17 +106,16 @@
         height: 100%;
         pointer-events: none;
         z-index: 50;
-        opacity: 0.015;
+        opacity: 0.015; /* Extremely subtle */
         background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
       }
 
-      /* Subtle Tech Grid Background - Made significantly more subtle */
       .bg-grid {
         background-size: 60px 60px;
-        background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                          linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-        mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
-        -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+        -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
       }
 
       .gradient-text {
@@ -100,15 +123,14 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        text-shadow: 0 0 30px rgba(168, 85, 247, 0.2);
       }
 
       /* Premium Card Glow Effect */
       .premium-card-border {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
         border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-        border-left: 1px solid rgba(255, 255, 255, 0.03);
-        border-right: 1px solid rgba(255, 255, 255, 0.03);
+        border-left: 1px solid rgba(255, 255, 255, 0.02);
+        border-right: 1px solid rgba(255, 255, 255, 0.02);
         box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.5);
       }
 
@@ -122,19 +144,48 @@
         -webkit-backdrop-filter: blur(12px);
       }
     </style>
-  <script type="importmap">
+
+    <!-- Reliable Import Map for Production (ESM.SH) -->
+    <!-- FIX: strictly use React 18 from esm.sh to prevent version mismatch (Error #31) -->
+    <script type="importmap">
 {
   "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0"
+    "react": "https://esm.sh/react@18.2.0",
+    "react/": "https://esm.sh/react@18.2.0/",
+    "react-dom": "https://esm.sh/react-dom@18.2.0",
+    "react-dom/": "https://esm.sh/react-dom@18.2.0/",
+    "lucide-react": "https://esm.sh/lucide-react@0.344.0"
   }
 }
 </script>
-</head>
+  </head>
   <body>
+    <!-- Initial Loader -->
+    <div id="initial-loader">
+      <div class="loader-spinner"></div>
+    </div>
+
+    <!-- App Root -->
     <div id="root"></div>
+
+    <!-- CRITICAL: Entry Point Script for Vite/Vercel/Netlify -->
+    <script type="module" src="/index.tsx"></script>
+
+    <!-- Loader Cleanup Script -->
+    <script>
+      window.addEventListener('load', () => {
+        const loader = document.getElementById('initial-loader');
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(() => loader.remove(), 500);
+        }
+      });
+    </script>
+    
+    <noscript>
+      <div style="padding: 2rem; color: white; text-align: center;">
+        Por favor, habilite o JavaScript para acessar a plataforma Harmonia Viva.
+      </div>
+    </noscript>
   </body>
 </html>
