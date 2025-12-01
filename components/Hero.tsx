@@ -78,6 +78,12 @@ export const Hero: React.FC = memo(() => {
     }
   }, []);
 
+  const handleWhatsAppClick = useCallback(() => {
+    const phoneNumber = "5555999518286";
+    const message = encodeURIComponent("Olá, gostaria de adquirir acesso à plataforma de ensino Harmonia Viva.");
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+  }, []);
+
   return (
     <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden flex flex-col justify-center">
       
@@ -103,7 +109,7 @@ export const Hero: React.FC = memo(() => {
           <Button 
             variant="primary" 
             className="w-full md:w-auto text-base md:text-lg px-8 py-4 shadow-[0_0_30px_rgba(16,185,129,0.3)] hover:shadow-[0_0_40px_rgba(16,185,129,0.5)] border border-brand-green/30" 
-            onClick={() => scrollTo('offer')}
+            onClick={handleWhatsAppClick}
           >
             ACESSAR PLATAFORMA
           </Button>

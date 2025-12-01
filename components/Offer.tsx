@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect, useRef } from 'react';
+import React, { memo, useState, useEffect, useRef, useCallback } from 'react';
 import { Lock, Star } from 'lucide-react';
 import { Button } from './Button';
 
@@ -35,6 +35,12 @@ export const Offer: React.FC = memo(() => {
     return () => {
       observer.disconnect();
     };
+  }, []);
+
+  const handleWhatsAppClick = useCallback(() => {
+    const phoneNumber = "5555999518286";
+    const message = encodeURIComponent("Olá, gostaria de adquirir acesso à plataforma de ensino Harmonia Viva.");
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   }, []);
 
   return (
@@ -106,6 +112,7 @@ export const Offer: React.FC = memo(() => {
                 fullWidth 
                 variant="primary" 
                 className="py-5 text-lg shadow-[0_0_30px_rgba(16,185,129,0.3)] hover:shadow-[0_0_50px_rgba(16,185,129,0.5)] border-t border-white/20 relative z-10"
+                onClick={handleWhatsAppClick}
               >
                 LIBERAR ACESSO AGORA
               </Button>
