@@ -37,10 +37,8 @@ export const Offer: React.FC = memo(() => {
     };
   }, []);
 
-  const handleWhatsAppClick = useCallback(() => {
-    const phoneNumber = "5555999518286";
-    const message = encodeURIComponent("Olá, gostaria de adquirir acesso à plataforma de ensino Harmonia Viva.");
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+  const handleCheckoutClick = useCallback(() => {
+    window.open('https://chk.eduzz.com/KW8KX2Q201', '_blank');
   }, []);
 
   return (
@@ -112,7 +110,7 @@ export const Offer: React.FC = memo(() => {
                 fullWidth 
                 variant="primary" 
                 className="py-5 text-lg shadow-[0_0_30px_rgba(16,185,129,0.3)] hover:shadow-[0_0_50px_rgba(16,185,129,0.5)] border-t border-white/20 relative z-10"
-                onClick={handleWhatsAppClick}
+                onClick={handleCheckoutClick}
               >
                 LIBERAR ACESSO AGORA
               </Button>

@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, ErrorInfo, ReactNode, Component } from 'react';
+import React, { Suspense, lazy, ErrorInfo, ReactNode } from 'react';
 import { Hero } from './components/Hero';
 
 // Lazy Load Components for Performance
@@ -17,10 +17,11 @@ interface ErrorBoundaryState {
 }
 
 // Robust Error Boundary
-class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  public state: ErrorBoundaryState = {
-    hasError: false
-  };
+class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
+    super(props);
+    this.state = { hasError: false };
+  }
 
   static getDerivedStateFromError(_: Error): ErrorBoundaryState {
     return { hasError: true };
