@@ -1,7 +1,12 @@
 import React, { useState, memo } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
-const questions = [
+interface Question {
+  q: string;
+  a: string;
+}
+
+const FAQ_DATA: Question[] = [
   {
     q: "Não sei nada de música, a plataforma é para mim?",
     a: "Com certeza. O Harmonia Viva foi criado para substituir o conhecimento técnico musical pela Inteligência Artificial. Você não precisa saber tocar, apenas ter a ideia. Nossa plataforma entrega os prompts prontos."
@@ -38,22 +43,28 @@ export const Faq: React.FC = memo(() => {
         </div>
         
         <div className="space-y-4">
-          {questions.map((item, index) => (
+          {FAQ_DATA.map((item, index) => (
             <div 
               key={index} 
               className={`border rounded-xl overflow-hidden transition-all duration-300 ${openIndex === index ? 'bg-brand-card border-brand-pink/30 shadow-lg' : 'bg-transparent border-white/10 hover:border-white/20'}`}
             >
               <button 
-                className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
+                className="w-full flex items-center justify-between p-6 text-left focus:outline-none focus:ring-1 focus:ring-brand-pink/50 rounded-xl"
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 aria-expanded={openIndex === index}
+                aria-controls={`faq-answer-${index}`}
               >
-                <span className={`font-semibold text-lg transition-colors ${openIndex === index ? 'text-white' : 'text-gray-300'}`}>{item.q}</span>
-                {openIndex === index ? <ChevronUp className="text-brand-pink" /> : <ChevronDown className="text-gray-500" />}
+                <span className={`font-semibold text-lg transition-colors pr-4 ${openIndex === index ? 'text-white' : 'text-gray-300'}`}>
+                  {item.q}
+                </span>
+                {openIndex === index ? <ChevronUp className="text-brand-pink flex-shrink-0" /> : <ChevronDown className="text-gray-500 flex-shrink-0" />}
               </button>
               
               {openIndex === index && (
-                <div className="px-6 pb-6 text-gray-400 leading-relaxed border-t border-white/5 pt-4">
+                <div 
+                  id={`faq-answer-${index}`}
+                  className="px-6 pb-6 text-gray-400 leading-relaxed border-t border-white/5 pt-4 animate-fade-in"
+                >
                   {item.a}
                 </div>
               )}
