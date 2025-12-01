@@ -1,4 +1,4 @@
-import React, { Component, Suspense, lazy, ErrorInfo, ReactNode } from 'react';
+import React, { Suspense, lazy, ErrorInfo, ReactNode } from 'react';
 import { Hero } from './components/Hero';
 import { Button } from './components/Button';
 
@@ -18,10 +18,11 @@ interface ErrorBoundaryState {
 }
 
 // Robust Error Boundary
-class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  public state: ErrorBoundaryState = {
-    hasError: false
-  };
+class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: ErrorBoundaryProps) {
+    super(props);
+    this.state = { hasError: false };
+  }
 
   static getDerivedStateFromError(_: Error): ErrorBoundaryState {
     return { hasError: true };

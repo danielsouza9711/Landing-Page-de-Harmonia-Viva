@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
@@ -66,19 +67,40 @@
     <!-- Global Styles & Critical CSS -->
     <style>
       body {
-        background-color: #030303;
+        margin: 0;
+        min-height: 100vh;
         color: #f3f4f6;
         overflow-x: hidden;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        margin: 0;
+
+        /* 
+           BIG TECH BACKGROUND STRATEGY:
+           1. Base: Rich Deep Black (Not #000).
+           2. Ambient Light: Top Center (Subtle Purple/Blue) to allow text to pop.
+           3. Secondary Light: Top Right (Subtle Pink) for dimension.
+           4. Tertiary Light: Bottom Left (Subtle Green) for balance.
+           5. Blending: Extremely low opacity (0.02 - 0.04) prevents harsh lines.
+        */
+        background-color: #020202;
+        background: 
+          /* Top Center - Atmosphere */
+          radial-gradient(circle at 50% 0%, rgba(120, 50, 255, 0.03) 0%, transparent 70%),
+          /* Top Right - Accent */
+          radial-gradient(circle at 80% 10%, rgba(217, 70, 239, 0.02) 0%, transparent 50%),
+          /* Bottom Left - Counter Accent */
+          radial-gradient(circle at 0% 100%, rgba(16, 185, 129, 0.02) 0%, transparent 50%),
+          /* Base Color */
+          #020202;
+          
+        background-attachment: fixed; /* Parallax-like feel */
       }
       
       /* Initial Load Spinner (Pure CSS) - Prevents black screen feeling */
       #initial-loader {
         position: fixed;
         inset: 0;
-        background-color: #030303;
+        background-color: #020202;
         z-index: 9999;
         display: flex;
         justify-content: center;
@@ -97,25 +119,13 @@
         to { transform: rotate(360deg); }
       }
       
-      /* Optimized Textures */
+      /* Clean Backgrounds - No textures/noise/pixels */
       .bg-noise {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 50;
-        opacity: 0.015; /* Extremely subtle */
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        display: none;
       }
 
       .bg-grid {
-        background-size: 60px 60px;
-        background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                          linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-        mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
-        -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+        display: none;
       }
 
       .gradient-text {
@@ -125,13 +135,16 @@
         background-clip: text;
       }
 
-      /* Premium Card Glow Effect */
+      /* Premium Card Glow Effect - Refined for "Glass" look */
       .premium-card-border {
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-        border-left: 1px solid rgba(255, 255, 255, 0.02);
-        border-right: 1px solid rgba(255, 255, 255, 0.02);
-        box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.5);
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.8);
+        border-left: 1px solid rgba(255, 255, 255, 0.03);
+        border-right: 1px solid rgba(255, 255, 255, 0.03);
+        box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.7);
+        background: rgba(10, 10, 10, 0.4); /* Ultra subtle transparency */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
       }
 
       .gpu-accelerated {
